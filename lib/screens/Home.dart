@@ -147,9 +147,15 @@ class Home extends StatelessWidget {
         ),
         body: ListView(
           children: [
-            listTileWidget(),
-            listTileWidget(),
-            listTileWidget(),
+            listTileWidget(title: 'Mouse', subTitle: 'Praise Tech'),
+            listTileWidget(
+              title: 'Laptop',
+              subTitle: 'Apple MacBook Pro',
+              leadingIcon: Icons.laptop,
+              listTileColor: Colors.yellow,
+              trailingIcon: Icons.shopping_cart,
+              iconColor: Colors.blue,
+            ),
           ],
         )
         // Center(
