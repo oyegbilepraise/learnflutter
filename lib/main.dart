@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learnflutter/screens/onboarding_screen.dart';
 import 'screens/Home.dart';
 import 'screens/Dashboard.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My Flutter App',
       themeMode: ThemeMode.system,
-      home: Home(),
+      home: onBoardingScreen(),
     );
   }
 }
