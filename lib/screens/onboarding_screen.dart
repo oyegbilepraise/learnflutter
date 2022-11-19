@@ -56,7 +56,7 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
                       child: DotInicator(isActive: index == _pageIndex),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   SizedBox(
                     height: 60,
                     width: 60,
@@ -151,7 +151,7 @@ class onboardContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Spacer(),
+        const Spacer(),
         Image.asset(
           image,
           height: 250,
