@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:learnflutter/screens/MyForm.dart';
 import 'package:learnflutter/screens/onboarding_screen.dart';
 import 'screens/Home.dart';
 import 'screens/Dashboard.dart';
+import 'screens/Section2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My Flutter App',
       themeMode: ThemeMode.system,
-      home: onBoardingScreen(),
+      home: MyForm(),
     );
   }
 }
