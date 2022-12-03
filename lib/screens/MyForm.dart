@@ -9,30 +9,114 @@ class MyForm extends StatefulWidget {
 }
 
 class _MyFormState extends State<MyForm> {
+  final _productNameController = TextEditingController();
+  final _productController = TextEditingController();
+  bool? _checkBox, _listCheckBox = false;
+
+  @override
+  void dispose() {
+    _productController.dispose();
+    _productNameController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Form'),
+        title: const Text('Form'),
       ),
-      body: Center(
-          child: OutlinedButton(
-        style: OutlinedButton.styleFrom(minimumSize: const Size(200, 50)),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return Details();
+      body: Container(
+        padding: const EdgeInsets.all(20.0),
+        child: ListView(
+          children: [
+            TextField(
+              controller: _productController,
+              decoration: const InputDecoration(
+                labelText: 'Product Name',
+                prefixIcon: Icon(
+                  Icons.verified_user_outlined,
+                ),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            TextField(
+              controller: _productNameController,
+              decoration: const InputDecoration(
+                labelText: 'Product subtitle',
+                prefixIcon: Icon(
+                  Icons.verified_user_outlined,
+                ),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            Checkbox(
+              value: _checkBox,
+              onChanged: (val) {
+                setState(() {
+                  _checkBox = val;
+                });
               },
             ),
-          );
-        },
-        child: Text(
-          'Submit'.toUpperCase(),
-          style: TextStyle(fontWeight: FontWeight.bold),
+            CheckboxListTile(
+              value: _listCheckBox,
+              title: const Text('Top Product'),
+              controlAffinity: ListTileControlAffinity.leading,
+              onChanged: (val) {
+                setState(() {
+                  _listCheckBox = val;
+                });
+              },
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            myBtn(context)
+          ],
         ),
-      )),
+      ),
+    );
+  }
+
+  OutlinedButton myBtn(BuildContext context) {
+    return OutlinedButton(
+      style: OutlinedButton.styleFrom(
+        minimumSize: const Size(200, 50),
+      ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return Details(
+                productName: _productController.text,
+                subtitle: _productNameController.text,
+              );
+            },
+          ),
+        );
+      },
+      child: Text(
+        'Submit'.toUpperCase(),
+        style: const TextStyle(fontWeight: FontWeight.bold),
+      ),
     );
   }
 }
+
+// class myBtn extends StatelessWidget {
+//   const myBtn({
+//     Key? key,
+//   }) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return
+//   }
+// }
