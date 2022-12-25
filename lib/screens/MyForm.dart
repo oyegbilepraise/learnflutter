@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:learnflutter/screens/Details.dart';
+import 'package:learnflutter/widget/my_radio_widget.dart';
+
+enum ProductTypeEnum { Downloadable, Deliverable }
 
 class MyForm extends StatefulWidget {
   const MyForm({Key? key}) : super(key: key);
@@ -12,6 +15,7 @@ class _MyFormState extends State<MyForm> {
   final _productNameController = TextEditingController();
   final _productController = TextEditingController();
   bool? _checkBox, _listCheckBox = false;
+  ProductTypeEnum? _productTypeEnum;
 
   @override
   void dispose() {
@@ -56,15 +60,9 @@ class _MyFormState extends State<MyForm> {
             const SizedBox(
               height: 20.0,
             ),
-            Checkbox(
-              value: _checkBox,
-              onChanged: (val) {
-                setState(() {
-                  _checkBox = val;
-                });
-              },
-            ),
             CheckboxListTile(
+              tileColor: Colors.blue.shade100,
+              contentPadding: EdgeInsets.all(0.0),
               value: _listCheckBox,
               title: const Text('Top Product'),
               controlAffinity: ListTileControlAffinity.leading,
@@ -73,6 +71,22 @@ class _MyFormState extends State<MyForm> {
                   _listCheckBox = val;
                 });
               },
+            ),
+            const SizedBox(
+              height: 10.0,
+            ),
+            Row(
+              children: [
+                MyRadioButton(
+                    title: ProductTypeEnum.Deliverable.name,
+                    value: ProductTypeEnum.Deliverable,
+                    selectedProductType: _productTypeEnum,
+                    onChanged: (val) {
+                      setState(() {
+                        _productTypeEnum = val;
+                      });
+                    })
+              ],
             ),
             const SizedBox(
               height: 20.0,
